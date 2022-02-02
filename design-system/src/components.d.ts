@@ -10,6 +10,12 @@ export namespace Components {
     active: boolean;
     type: 'primary' | 'secondary' | 'action';
   }
+  interface AnaImage {
+    alt: string;
+    shape?: 'round' | 'smooth' | 'sharp';
+    size?: 'large' | 'medium' | 'small' | 'xsmall';
+    src: string;
+  }
   interface AnaTitle {
     color?: string;
     content: string;
@@ -27,6 +33,11 @@ declare global {
     prototype: HTMLAnaButtonElement;
     new (): HTMLAnaButtonElement;
   };
+  interface HTMLAnaImageElement extends Components.AnaImage, HTMLStencilElement {}
+  var HTMLAnaImageElement: {
+    prototype: HTMLAnaImageElement;
+    new (): HTMLAnaImageElement;
+  };
   interface HTMLAnaTitleElement extends Components.AnaTitle, HTMLStencilElement {}
   var HTMLAnaTitleElement: {
     prototype: HTMLAnaTitleElement;
@@ -39,6 +50,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'ana-button': HTMLAnaButtonElement;
+    'ana-image': HTMLAnaImageElement;
     'ana-title': HTMLAnaTitleElement;
     'my-component': HTMLMyComponentElement;
   }
@@ -47,6 +59,12 @@ declare namespace LocalJSX {
   interface AnaButton {
     active?: boolean;
     type?: 'primary' | 'secondary' | 'action';
+  }
+  interface AnaImage {
+    alt: string;
+    shape?: 'round' | 'smooth' | 'sharp';
+    size?: 'large' | 'medium' | 'small' | 'xsmall';
+    src: string;
   }
   interface AnaTitle {
     color?: string;
@@ -60,6 +78,7 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'ana-button': AnaButton;
+    'ana-image': AnaImage;
     'ana-title': AnaTitle;
     'my-component': MyComponent;
   }
@@ -69,6 +88,7 @@ declare module '@stencil/core' {
   export namespace JSX {
     interface IntrinsicElements {
       'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
+      'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }
