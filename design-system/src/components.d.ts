@@ -6,27 +6,40 @@
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
+  interface AnaTitle {
+    size: 'large' | 'medium' | 'small';
+  }
   interface MyComponent {
     first?: string;
     last?: string;
   }
 }
 declare global {
+  interface HTMLAnaTitleElement extends Components.AnaTitle, HTMLStencilElement {}
+  var HTMLAnaTitleElement: {
+    prototype: HTMLAnaTitleElement;
+    new (): HTMLAnaTitleElement;
+  };
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
     prototype: HTMLMyComponentElement;
     new (): HTMLMyComponentElement;
   };
   interface HTMLElementTagNameMap {
+    'ana-title': HTMLAnaTitleElement;
     'my-component': HTMLMyComponentElement;
   }
 }
 declare namespace LocalJSX {
+  interface AnaTitle {
+    size?: 'large' | 'medium' | 'small';
+  }
   interface MyComponent {
     first?: string;
     last?: string;
   }
   interface IntrinsicElements {
+    'ana-title': AnaTitle;
     'my-component': MyComponent;
   }
 }
@@ -34,6 +47,7 @@ export { LocalJSX as JSX };
 declare module '@stencil/core' {
   export namespace JSX {
     interface IntrinsicElements {
+      'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }
   }
