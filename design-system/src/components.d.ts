@@ -12,6 +12,7 @@ export namespace Components {
     selected?: boolean;
     type: 'primary' | 'secondary' | 'action';
   }
+  interface AnaFilters {}
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
@@ -35,6 +36,11 @@ declare global {
     prototype: HTMLAnaButtonElement;
     new (): HTMLAnaButtonElement;
   };
+  interface HTMLAnaFiltersElement extends Components.AnaFilters, HTMLStencilElement {}
+  var HTMLAnaFiltersElement: {
+    prototype: HTMLAnaFiltersElement;
+    new (): HTMLAnaFiltersElement;
+  };
   interface HTMLAnaImageElement extends Components.AnaImage, HTMLStencilElement {}
   var HTMLAnaImageElement: {
     prototype: HTMLAnaImageElement;
@@ -52,6 +58,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'ana-button': HTMLAnaButtonElement;
+    'ana-filters': HTMLAnaFiltersElement;
     'ana-image': HTMLAnaImageElement;
     'ana-title': HTMLAnaTitleElement;
     'my-component': HTMLMyComponentElement;
@@ -64,6 +71,7 @@ declare namespace LocalJSX {
     selected?: boolean;
     type?: 'primary' | 'secondary' | 'action';
   }
+  interface AnaFilters {}
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
@@ -82,6 +90,7 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'ana-button': AnaButton;
+    'ana-filters': AnaFilters;
     'ana-image': AnaImage;
     'ana-title': AnaTitle;
     'my-component': MyComponent;
@@ -92,6 +101,7 @@ declare module '@stencil/core' {
   export namespace JSX {
     interface IntrinsicElements {
       'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
+      'ana-filters': LocalJSX.AnaFilters & JSXBase.HTMLAttributes<HTMLAnaFiltersElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
