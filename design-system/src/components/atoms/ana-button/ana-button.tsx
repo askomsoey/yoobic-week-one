@@ -8,8 +8,8 @@ import { Component, ComponentInterface, getAssetPath, h, Host, Prop } from '@ste
 })
 export class AnaButton implements ComponentInterface {
   @Prop() type: 'primary' | 'secondary' | 'action' = 'primary';
-  @Prop() selected = false;
-  @Prop() content: string;
+  @Prop() selected? = false;
+  @Prop() content?: string;
   @Prop() icon?: string;
 
   renderIcon() {
