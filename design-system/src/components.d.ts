@@ -7,7 +7,9 @@
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
   interface AnaButton {
-    active: boolean;
+    content: string;
+    icon: string;
+    selected: boolean;
     type: 'primary' | 'secondary' | 'action';
   }
   interface AnaTitle {
@@ -45,7 +47,9 @@ declare global {
 }
 declare namespace LocalJSX {
   interface AnaButton {
-    active?: boolean;
+    content?: string;
+    icon?: string;
+    selected?: boolean;
     type?: 'primary' | 'secondary' | 'action';
   }
   interface AnaTitle {
