@@ -8,7 +8,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
   interface AnaButton {
     content: string;
-    icon: string;
+    icon?: string;
     selected: boolean;
     type: 'primary' | 'secondary' | 'action';
   }

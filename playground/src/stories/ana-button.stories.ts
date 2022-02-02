@@ -39,13 +39,20 @@ SecondarySelected.args = {
   selected: true,
 };
 
-export const DefaultLongText: Story<Components.AnaButton> = Template.bind({});
-DefaultLongText.args = {
-  content: 'Create a new post',
-};
-
 export const IconButton: Story<Components.AnaButton> = Template.bind({});
 IconButton.args = {
   content: 'Popular',
   icon: 'myIcon.png',
+};
+
+export const Action: Story<Components.AnaButton> = Template.bind({});
+Action.args = {
+  type: 'action',
+  content: 'Share',
+  icon: 'myIcon.png',
+};
+
+export const DefaultLongText: Story<Components.AnaButton> = Template.bind({});
+DefaultLongText.args = {
+  content: 'Create a new post',
 };

@@ -10,7 +10,7 @@ export class AnaButton implements ComponentInterface {
   @Prop() type: 'primary' | 'secondary' | 'action' = 'primary';
   @Prop() selected = false;
   @Prop() content: string;
-  @Prop() icon: string;
+  @Prop() icon?: string;
 
   renderIcon() {
     return <img src={getAssetPath(`./assets/${this.icon}`)} />;
