@@ -1,4 +1,6 @@
-import { Component, ComponentInterface, getAssetPath, h, Host, Prop } from '@stencil/core';
+import { Component, ComponentInterface, Event, EventEmitter, getAssetPath, h, Host, Prop } from '@stencil/core';
+
+export type Identifier = string;
 
 @Component({
   tag: 'ana-button',
@@ -7,10 +9,22 @@ import { Component, ComponentInterface, getAssetPath, h, Host, Prop } from '@ste
   assetsDirs: ['assets'],
 })
 export class AnaButton implements ComponentInterface {
+  @Prop() identifier?: Identifier = 'button';
   @Prop() type: 'primary' | 'secondary' | 'action' = 'primary';
   @Prop() selected? = false;
   @Prop() content?: string;
   @Prop() icon?: string;
+
+  @Event({
+    eventName: 'buttonClicked',
+    bubbles: true,
+    composed: true,
+  })
+  buttonClicked: EventEmitter<Identifier>;
+
+  buttonClickedHandler() {
+    this.buttonClicked.emit(this.identifier);
+  }
 
   renderIcon() {
     return <img src={getAssetPath(`./assets/${this.icon}`)} />;
@@ -19,9 +33,10 @@ export class AnaButton implements ComponentInterface {
   render() {
     return (
       <Host>
-        <button class={`button ${this.type} ${this.selected ? 'selected' : ''}`}>
+        <button class={`button ${this.type} ${this.selected ? 'selected' : ''}`} onClick={this.buttonClickedHandler.bind(this)}>
           {this.icon ? this.renderIcon() : ''}
-          {this.content}
+          {this.content && this.content}
+          <slot />
         </button>
       </Host>
     );
