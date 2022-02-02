@@ -1,7 +1,29 @@
 :host {
-  margin: 6px 9px;
+  .title {
+    margin: 6px 9px;
+    font-weight: 700;
+    font-size: 26px;
 
-  ::slotted(*) {
-    font-size: large;
+    /* Size */
+    &.large {
+      margin: 8px 12px;
+      font-weight: 900;
+      font-size: 32px;
+    }
+    &.medium {
+      margin: 6px 9px;
+      font-weight: 700;
+      font-size: 26px;
+    }
+    &.small {
+      margin: 4px 6px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    /* Other */
+    &.elevated {
+      text-shadow: rgba(0, 0, 0, 0.25) 2px 2px 6px;
+    }
   }
 }

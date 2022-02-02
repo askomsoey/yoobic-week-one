@@ -7,7 +7,10 @@
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
   interface AnaTitle {
-    size: 'large' | 'medium' | 'small';
+    color?: string;
+    content: string;
+    elevated: boolean;
+    size?: 'large' | 'medium' | 'small';
   }
   interface MyComponent {
     first?: string;
@@ -32,6 +35,9 @@ declare global {
 }
 declare namespace LocalJSX {
   interface AnaTitle {
+    color?: string;
+    content: string;
+    elevated?: boolean;
     size?: 'large' | 'medium' | 'small';
   }
   interface MyComponent {
