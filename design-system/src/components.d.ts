@@ -6,6 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
+  interface AnaButton {
+    active: boolean;
+    type: 'primary' | 'secondary' | 'action';
+  }
   interface AnaTitle {
     color?: string;
     content: string;
@@ -18,6 +22,11 @@ export namespace Components {
   }
 }
 declare global {
+  interface HTMLAnaButtonElement extends Components.AnaButton, HTMLStencilElement {}
+  var HTMLAnaButtonElement: {
+    prototype: HTMLAnaButtonElement;
+    new (): HTMLAnaButtonElement;
+  };
   interface HTMLAnaTitleElement extends Components.AnaTitle, HTMLStencilElement {}
   var HTMLAnaTitleElement: {
     prototype: HTMLAnaTitleElement;
@@ -29,11 +38,16 @@ declare global {
     new (): HTMLMyComponentElement;
   };
   interface HTMLElementTagNameMap {
+    'ana-button': HTMLAnaButtonElement;
     'ana-title': HTMLAnaTitleElement;
     'my-component': HTMLMyComponentElement;
   }
 }
 declare namespace LocalJSX {
+  interface AnaButton {
+    active?: boolean;
+    type?: 'primary' | 'secondary' | 'action';
+  }
   interface AnaTitle {
     color?: string;
     content: string;
@@ -45,6 +59,7 @@ declare namespace LocalJSX {
     last?: string;
   }
   interface IntrinsicElements {
+    'ana-button': AnaButton;
     'ana-title': AnaTitle;
     'my-component': MyComponent;
   }
@@ -53,6 +68,7 @@ export { LocalJSX as JSX };
 declare module '@stencil/core' {
   export namespace JSX {
     interface IntrinsicElements {
+      'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }

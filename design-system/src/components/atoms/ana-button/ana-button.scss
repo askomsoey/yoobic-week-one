@@ -1,0 +1,18 @@
+:host {
+  button {
+    padding: 10px;
+    color: #d7dadc;
+    font-weight: bold;
+    background-color: none;
+    border: none;
+    border-radius: 20px;
+
+    &.primary {
+      color: #1a1a1b;
+      background-color: #d7dadc;
+    }
+    &.active {
+      background-color: #272729;
+    }
+  }
+}
