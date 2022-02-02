@@ -5,11 +5,21 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
+import { Identifier } from './components/atoms/ana-button/ana-button';
 export namespace Components {
   interface AnaButton {
-    content: string;
+    content?: string;
     icon?: string;
+    identifier?: Identifier;
     selected: boolean;
+    type: 'primary' | 'secondary' | 'action';
+  }
+  interface AnaDropdown {
+    close: () => Promise<void>;
+    elevated: boolean;
+    open: () => Promise<void>;
+    shape: 'round' | 'smooth' | 'sharp';
+    toggle: () => Promise<void>;
     type: 'primary' | 'secondary' | 'action';
   }
   interface AnaImage {
@@ -35,6 +45,11 @@ declare global {
     prototype: HTMLAnaButtonElement;
     new (): HTMLAnaButtonElement;
   };
+  interface HTMLAnaDropdownElement extends Components.AnaDropdown, HTMLStencilElement {}
+  var HTMLAnaDropdownElement: {
+    prototype: HTMLAnaDropdownElement;
+    new (): HTMLAnaDropdownElement;
+  };
   interface HTMLAnaImageElement extends Components.AnaImage, HTMLStencilElement {}
   var HTMLAnaImageElement: {
     prototype: HTMLAnaImageElement;
@@ -52,6 +67,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'ana-button': HTMLAnaButtonElement;
+    'ana-dropdown': HTMLAnaDropdownElement;
     'ana-image': HTMLAnaImageElement;
     'ana-title': HTMLAnaTitleElement;
     'my-component': HTMLMyComponentElement;
@@ -61,7 +77,14 @@ declare namespace LocalJSX {
   interface AnaButton {
     content?: string;
     icon?: string;
+    identifier?: Identifier;
+    onButtonClicked?: (event: CustomEvent<Identifier>) => void;
     selected?: boolean;
+    type?: 'primary' | 'secondary' | 'action';
+  }
+  interface AnaDropdown {
+    elevated?: boolean;
+    shape?: 'round' | 'smooth' | 'sharp';
     type?: 'primary' | 'secondary' | 'action';
   }
   interface AnaImage {
@@ -82,6 +105,7 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'ana-button': AnaButton;
+    'ana-dropdown': AnaDropdown;
     'ana-image': AnaImage;
     'ana-title': AnaTitle;
     'my-component': MyComponent;
@@ -92,6 +116,7 @@ declare module '@stencil/core' {
   export namespace JSX {
     interface IntrinsicElements {
       'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
+      'ana-dropdown': LocalJSX.AnaDropdown & JSXBase.HTMLAttributes<HTMLAnaDropdownElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
