@@ -11,7 +11,7 @@ export type Identifier = string;
 export class AnaButton implements ComponentInterface {
   @Prop() identifier?: Identifier = 'button';
   @Prop() type: 'primary' | 'secondary' | 'action' = 'primary';
-  @Prop() selected = false;
+  @Prop() selected? = false;
   @Prop() content?: string;
   @Prop() icon?: string;
 

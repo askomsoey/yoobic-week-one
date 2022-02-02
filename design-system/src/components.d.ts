@@ -11,7 +11,7 @@ export namespace Components {
     content?: string;
     icon?: string;
     identifier?: Identifier;
-    selected: boolean;
+    selected?: boolean;
     type: 'primary' | 'secondary' | 'action';
   }
   interface AnaDropdown {
