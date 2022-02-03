@@ -6,8 +6,30 @@ export default {
   title: "A'n'A Filters",
 } as Meta;
 
-const Template: Story<Components.AnaButton> = () => {
-  return html`<ana-filters></ana-filters>`;
+const Template: Story<Components.AnaFilters> = ({ filters }) => {
+  return html`<ana-filters .filters=${filters}></ana-filters>`;
 };
 
-export const Default: Story<Components.AnaButton> = Template.bind({});
+export const Default: Story<Components.AnaFilters> = Template.bind({});
+Default.args = {
+  filters: [
+    {
+      id: 'hot',
+      title: 'Hot',
+      selected: true,
+      icon: 'fire',
+    },
+    {
+      id: 'new',
+      title: 'New',
+      selected: false,
+      icon: 'certificate',
+    },
+    {
+      id: 'top',
+      title: 'Top',
+      selected: false,
+      icon: 'upload',
+    },
+  ],
+};

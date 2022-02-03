@@ -1,11 +1,11 @@
-import { Component, ComponentInterface, Event, EventEmitter, getAssetPath, h, Host, Prop } from '@stencil/core';
+import { Component, ComponentInterface, Event, EventEmitter, h, Host, Prop } from '@stencil/core';
+import Helmet from '@stencil/helmet';
 
 export type Identifier = string;
 
 @Component({
   tag: 'ana-button',
   styleUrl: 'ana-button.scss',
-  shadow: true,
   assetsDirs: ['assets'],
 })
 export class AnaButton implements ComponentInterface {
@@ -27,7 +27,13 @@ export class AnaButton implements ComponentInterface {
   }
 
   renderIcon() {
-    return <img src={getAssetPath(`./assets/${this.icon}`)} />;
+    // Also render a script tag including a FontAwesome script in head
+    return [
+      <Helmet>
+        <script src="https://kit.fontawesome.com/783e54b461.js" crossorigin="anonymous"></script>
+      </Helmet>,
+      <i class={`fas fa-${this.icon} fa-lg`}></i>,
+    ];
   }
 
   render() {

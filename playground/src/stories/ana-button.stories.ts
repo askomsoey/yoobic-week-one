@@ -41,15 +41,15 @@ SecondarySelected.args = {
 
 export const IconButton: Story<Components.AnaButton> = Template.bind({});
 IconButton.args = {
-  content: 'Popular',
-  icon: 'myIcon.png',
+  content: 'Hot',
+  icon: 'fire',
 };
 
 export const Action: Story<Components.AnaButton> = Template.bind({});
 Action.args = {
   type: 'action',
   content: 'Share',
-  icon: 'myIcon.png',
+  icon: 'share',
 };
 
 export const DefaultLongText: Story<Components.AnaButton> = Template.bind({});

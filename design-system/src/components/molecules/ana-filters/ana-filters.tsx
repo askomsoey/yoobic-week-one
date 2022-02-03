@@ -1,38 +1,16 @@
-import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, State } from '@stencil/core';
+import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, Prop, State } from '@stencil/core';
 
 import { Identifier } from '../../atoms/ana-button/ana-button';
-
-interface Filter {
-  title: string;
-  selected: boolean;
-  icon: string;
-}
 
 @Component({
   tag: 'ana-filters',
   styleUrl: 'ana-filters.scss',
-  shadow: true,
   assetsDirs: ['assets'],
 })
 export class AnaFilters implements ComponentInterface {
   buttonsType: 'primary' | 'secondary' | 'action' = 'secondary';
-  @State() filters: Filter[] = [
-    {
-      title: 'Hot',
-      selected: true,
-      icon: 'Hot.png',
-    },
-    {
-      title: 'New',
-      selected: false,
-      icon: 'new.png',
-    },
-    {
-      title: 'Top',
-      selected: false,
-      icon: 'top.png',
-    },
-  ];
+  @Prop() filters: any = [];
+  @State() selectedFilter: string;
 
   @Event({
     eventName: 'filterChange',
@@ -43,10 +21,13 @@ export class AnaFilters implements ComponentInterface {
 
   @Listen('buttonClicked')
   filterChangeHandler(event: CustomEvent<Identifier>) {
-    this.filters.find((f) => f.selected).selected = false;
-    this.filters.find((f) => f.title === event.detail).selected = true;
-    this.filters = [...this.filters];
-    this.filterChange.emit('filterChange');
+    this.selectedFilter = event.detail;
+  }
+
+  connectedCallback() {
+    if (this.filters.length) {
+      this.selectedFilter = this.filters[0].id;
+    }
   }
 
   render() {
@@ -54,7 +35,7 @@ export class AnaFilters implements ComponentInterface {
       <Host>
         <div class="filters-container">
           {this.filters.map((f) => (
-            <ana-button identifier={f.title} type={this.buttonsType} content={f.title} selected={f.selected}></ana-button>
+            <ana-button identifier={f.id} type={this.buttonsType} content={f.title} selected={f.id === this.selectedFilter} icon={f.icon}></ana-button>
           ))}
         </div>
       </Host>
