@@ -22,6 +22,7 @@ export namespace Components {
     toggle: () => Promise<void>;
     type: 'primary' | 'secondary' | 'action';
   }
+  interface AnaFilters {}
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
@@ -50,6 +51,11 @@ declare global {
     prototype: HTMLAnaDropdownElement;
     new (): HTMLAnaDropdownElement;
   };
+  interface HTMLAnaFiltersElement extends Components.AnaFilters, HTMLStencilElement {}
+  var HTMLAnaFiltersElement: {
+    prototype: HTMLAnaFiltersElement;
+    new (): HTMLAnaFiltersElement;
+  };
   interface HTMLAnaImageElement extends Components.AnaImage, HTMLStencilElement {}
   var HTMLAnaImageElement: {
     prototype: HTMLAnaImageElement;
@@ -68,6 +74,7 @@ declare global {
   interface HTMLElementTagNameMap {
     'ana-button': HTMLAnaButtonElement;
     'ana-dropdown': HTMLAnaDropdownElement;
+    'ana-filters': HTMLAnaFiltersElement;
     'ana-image': HTMLAnaImageElement;
     'ana-title': HTMLAnaTitleElement;
     'my-component': HTMLMyComponentElement;
@@ -86,6 +93,9 @@ declare namespace LocalJSX {
     elevated?: boolean;
     shape?: 'round' | 'smooth' | 'sharp';
     type?: 'primary' | 'secondary' | 'action';
+  }
+  interface AnaFilters {
+    onFilterChange?: (event: CustomEvent<string>) => void;
   }
   interface AnaImage {
     alt: string;
@@ -106,6 +116,7 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'ana-button': AnaButton;
     'ana-dropdown': AnaDropdown;
+    'ana-filters': AnaFilters;
     'ana-image': AnaImage;
     'ana-title': AnaTitle;
     'my-component': MyComponent;
@@ -117,6 +128,7 @@ declare module '@stencil/core' {
     interface IntrinsicElements {
       'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
       'ana-dropdown': LocalJSX.AnaDropdown & JSXBase.HTMLAttributes<HTMLAnaDropdownElement>;
+      'ana-filters': LocalJSX.AnaFilters & JSXBase.HTMLAttributes<HTMLAnaFiltersElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
