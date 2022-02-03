@@ -1,4 +1,6 @@
-import { Component, ComponentInterface, h, Host } from '@stencil/core';
+import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, State } from '@stencil/core';
+
+import { Identifier } from '../../atoms/ana-button/ana-button';
 
 interface Filter {
   title: string;
@@ -14,7 +16,7 @@ interface Filter {
 })
 export class AnaFilters implements ComponentInterface {
   buttonsType: 'primary' | 'secondary' | 'action' = 'secondary';
-  filters: Filter[] = [
+  @State() filters: Filter[] = [
     {
       title: 'Hot',
       selected: true,
@@ -32,9 +34,19 @@ export class AnaFilters implements ComponentInterface {
     },
   ];
 
-  onFilterChange(newFilter: Filter) {
+  @Event({
+    eventName: 'filterChange',
+    bubbles: true,
+    composed: true,
+  })
+  filterChange: EventEmitter<string>;
+
+  @Listen('buttonClicked')
+  filterChangeHandler(event: CustomEvent<Identifier>) {
     this.filters.find((f) => f.selected).selected = false;
-    this.filters.find((f) => f.title === newFilter.title).selected = true;
+    this.filters.find((f) => f.title === event.detail).selected = true;
+    this.filters = [...this.filters];
+    this.filterChange.emit('filterChange');
   }
 
   render() {
@@ -42,7 +54,7 @@ export class AnaFilters implements ComponentInterface {
       <Host>
         <div class="filters-container">
           {this.filters.map((f) => (
-            <ana-button type={this.buttonsType} content={f.title} selected={f.selected}></ana-button>
+            <ana-button identifier={f.title} type={this.buttonsType} content={f.title} selected={f.selected}></ana-button>
           ))}
         </div>
       </Host>
