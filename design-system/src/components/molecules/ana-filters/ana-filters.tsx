@@ -1,6 +1,6 @@
 import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, State } from '@stencil/core';
 
-import { Identifier } from '../../atoms/ana-button/ana-button';
+import { Identifier } from '../../shared/identifier';
 
 interface Filter {
   title: string;

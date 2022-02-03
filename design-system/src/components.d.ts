@@ -5,7 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-import { Identifier } from './components/atoms/ana-button/ana-button';
+import { Identifier } from './components/shared/identifier';
+import { Variant } from './components/molecules/ana-votes/ana-votes';
 export namespace Components {
   interface AnaButton {
     content?: string;
@@ -34,6 +35,11 @@ export namespace Components {
     content: string;
     elevated: boolean;
     size?: 'large' | 'medium' | 'small';
+  }
+  interface AnaVotes {
+    identifier?: string;
+    totalVotes: number;
+    variant?: Variant;
   }
   interface MyComponent {
     first?: string;
@@ -66,6 +72,11 @@ declare global {
     prototype: HTMLAnaTitleElement;
     new (): HTMLAnaTitleElement;
   };
+  interface HTMLAnaVotesElement extends Components.AnaVotes, HTMLStencilElement {}
+  var HTMLAnaVotesElement: {
+    prototype: HTMLAnaVotesElement;
+    new (): HTMLAnaVotesElement;
+  };
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
     prototype: HTMLMyComponentElement;
@@ -77,6 +88,7 @@ declare global {
     'ana-filters': HTMLAnaFiltersElement;
     'ana-image': HTMLAnaImageElement;
     'ana-title': HTMLAnaTitleElement;
+    'ana-votes': HTMLAnaVotesElement;
     'my-component': HTMLMyComponentElement;
   }
 }
@@ -109,6 +121,13 @@ declare namespace LocalJSX {
     elevated?: boolean;
     size?: 'large' | 'medium' | 'small';
   }
+  interface AnaVotes {
+    identifier?: string;
+    onVotesDecremented?: (event: CustomEvent<Identifier>) => void;
+    onVotesIncremented?: (event: CustomEvent<Identifier>) => void;
+    totalVotes: number;
+    variant?: Variant;
+  }
   interface MyComponent {
     first?: string;
     last?: string;
@@ -119,6 +138,7 @@ declare namespace LocalJSX {
     'ana-filters': AnaFilters;
     'ana-image': AnaImage;
     'ana-title': AnaTitle;
+    'ana-votes': AnaVotes;
     'my-component': MyComponent;
   }
 }
@@ -131,6 +151,7 @@ declare module '@stencil/core' {
       'ana-filters': LocalJSX.AnaFilters & JSXBase.HTMLAttributes<HTMLAnaFiltersElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
+      'ana-votes': LocalJSX.AnaVotes & JSXBase.HTMLAttributes<HTMLAnaVotesElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }
   }

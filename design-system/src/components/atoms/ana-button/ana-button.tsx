@@ -1,6 +1,6 @@
 import { Component, ComponentInterface, Event, EventEmitter, getAssetPath, h, Host, Prop } from '@stencil/core';
 
-export type Identifier = string;
+import { Identifier } from '../../shared/identifier';
 
 @Component({
   tag: 'ana-button',

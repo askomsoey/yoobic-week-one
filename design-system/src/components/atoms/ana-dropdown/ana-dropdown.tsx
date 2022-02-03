@@ -1,6 +1,6 @@
 import { Component, ComponentInterface, h, Host, Listen, Method, Prop, State } from '@stencil/core';
 
-import { Identifier } from '../ana-button/ana-button';
+import { Identifier } from '../../shared/identifier';
 
 @Component({
   tag: 'ana-dropdown',
