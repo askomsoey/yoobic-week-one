@@ -22,7 +22,7 @@ export default {
 } as Meta;
 
 const Template: Story<Components.AnaButton> = ({ identifier = 'button', type = 'primary', content = 'Join', selected = false, icon = '' }) => {
-  return html`<ana-button identifier=${identifier} type=${type} content=${content} selected=${selected} icon=${icon}></ana-button>`;
+  return html` <ana-button identifier=${identifier} type=${type} content=${content} selected=${selected} icon=${icon}></ana-button>`;
 };
 
 export const Default: Story<Components.AnaButton> = Template.bind({});
