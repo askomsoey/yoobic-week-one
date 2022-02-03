@@ -4,6 +4,7 @@ import { Component, ComponentInterface, h, Host, Prop } from '@stencil/core';
   tag: 'ana-image',
   styleUrl: 'ana-image.scss',
   shadow: true,
+  assetsDirs: ['assets/ana-image'],
 })
 export class AnaImage implements ComponentInterface {
   @Prop({ reflect: true }) src!: string;
