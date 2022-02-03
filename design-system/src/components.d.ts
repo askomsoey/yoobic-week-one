@@ -23,7 +23,9 @@ export namespace Components {
     toggle: () => Promise<void>;
     type: 'primary' | 'secondary' | 'action';
   }
-  interface AnaFilters {}
+  interface AnaFilters {
+    filters: any;
+  }
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
@@ -107,6 +109,7 @@ declare namespace LocalJSX {
     type?: 'primary' | 'secondary' | 'action';
   }
   interface AnaFilters {
+    filters?: any;
     onFilterChange?: (event: CustomEvent<string>) => void;
   }
   interface AnaImage {

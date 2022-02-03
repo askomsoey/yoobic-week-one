@@ -1,9 +1,7 @@
-:host {
-  .filters-container {
-    display: flex;
-    align-items: center;
-    ana-button {
-      margin: 0 3px;
-    }
+.filters-container {
+  display: flex;
+  align-items: center;
+  ana-button {
+    margin: 0 3px;
   }
 }
