@@ -1,4 +1,4 @@
-:host {
+.card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -6,8 +6,7 @@
   color: #d7dadc;
   background-color: #1a1a1b;
   border: 1px solid #343536;
-  border-radius: 2px;
-  cursor: pointer;
+  border-radius: 5px;
 
   > .left,
   > .right {
@@ -18,7 +17,10 @@
     width: 100%;
   }
 
-  &:hover {
-    border-color: #808384;
+  &.hoverable {
+    &:hover {
+      border-color: #808384;
+      cursor: pointer;
+    }
   }
 }
