@@ -41,13 +41,13 @@ export class AnaVotes implements ComponentInterface {
     let source;
     switch (variant) {
       case 'arrows':
-        source = usage === 'increment' ? 'https://img.icons8.com/ios/32/d4d4d4/sort-up.png' : 'https://img.icons8.com/ios/32/d4d4d4/sort-down.png';
+        source = usage === 'increment' ? 'https://img.icons8.com/ios/20/d4d4d4/sort-up.png' : 'https://img.icons8.com/ios/20/d4d4d4/sort-down.png';
         break;
       case 'math':
-        source = usage === 'increment' ? 'https://img.icons8.com/ios/32/d4d4d4/plus-math.png' : 'https://img.icons8.com/ios/32/d4d4d4/minus-math.png';
+        source = usage === 'increment' ? 'https://img.icons8.com/ios/20/d4d4d4/plus-math.png' : 'https://img.icons8.com/ios/20/d4d4d4/minus-math.png';
         break;
       case 'thumbs':
-        source = usage === 'increment' ? 'https://img.icons8.com/material-outlined/32/d4d4d4/thumb-up.png' : 'https://img.icons8.com/material-outlined/32/d4d4d4/thumbs-down.png';
+        source = usage === 'increment' ? 'https://img.icons8.com/material-outlined/20/d4d4d4/thumb-up.png' : 'https://img.icons8.com/material-outlined/20/d4d4d4/thumbs-down.png';
         break;
       default:
         return;
