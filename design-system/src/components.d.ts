@@ -46,6 +46,7 @@ export namespace Components {
     content: string;
     elevated: boolean;
     size?: 'large' | 'medium' | 'small';
+    subtitle?: string;
   }
   interface AnaVotes {
     identifier?: string;
@@ -136,6 +137,7 @@ declare namespace LocalJSX {
     content: string;
     elevated?: boolean;
     size?: 'large' | 'medium' | 'small';
+    subtitle?: string;
   }
   interface AnaVotes {
     identifier?: string;
