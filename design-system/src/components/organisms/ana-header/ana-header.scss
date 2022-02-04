@@ -1,3 +1,42 @@
 :host {
-  background-color: black;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .header-img-container {
+    min-height: 80px;
+    background-color: rgb(0, 81, 156);
+  }
+
+  .control-panel {
+    display: grid;
+    grid-template-areas:
+      '. logo title button .'
+      '. tabs tabs . .';
+    grid-template-columns: 2fr 1.5fr 6fr 1fr 2fr;
+    background-color: rgb(36, 36, 36);
+
+    ana-image {
+      grid-area: logo;
+      justify-self: right;
+      margin-top: -25px;
+    }
+
+    ana-title {
+      grid-area: title;
+    }
+
+    ana-button {
+      grid-area: button;
+      margin-top: 10px;
+    }
+
+    ana-tabs {
+      grid-area: tabs;
+
+      ana-button {
+        margin: 0;
+      }
+    }
+  }
 }

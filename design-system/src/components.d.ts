@@ -32,14 +32,19 @@ export namespace Components {
     toggle: () => Promise<void>;
     type: 'primary' | 'secondary' | 'action';
   }
-  interface AnaHeader {}
+  interface AnaHeader {
+    headerBackgroundImg?: string;
+    pageLogoSrc: string;
+    subtitleContent?: string;
+    tabsData: Tab[];
+    titleContent: string;
+  }
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
     size?: 'large' | 'medium' | 'small' | 'xsmall';
     src: string;
   }
-  interface AnaInput {}
   interface AnaPostActions {
     actions: any;
     identifier?: string;
@@ -90,11 +95,6 @@ declare global {
     prototype: HTMLAnaImageElement;
     new (): HTMLAnaImageElement;
   };
-  interface HTMLAnaInputElement extends Components.AnaInput, HTMLStencilElement {}
-  var HTMLAnaInputElement: {
-    prototype: HTMLAnaInputElement;
-    new (): HTMLAnaInputElement;
-  };
   interface HTMLAnaPostActionsElement extends Components.AnaPostActions, HTMLStencilElement {}
   var HTMLAnaPostActionsElement: {
     prototype: HTMLAnaPostActionsElement;
@@ -121,7 +121,6 @@ declare global {
     'ana-dropdown': HTMLAnaDropdownElement;
     'ana-header': HTMLAnaHeaderElement;
     'ana-image': HTMLAnaImageElement;
-    'ana-input': HTMLAnaInputElement;
     'ana-post-actions': HTMLAnaPostActionsElement;
     'ana-tabs': HTMLAnaTabsElement;
     'ana-title': HTMLAnaTitleElement;
@@ -147,14 +146,19 @@ declare namespace LocalJSX {
     shape?: 'round' | 'smooth' | 'sharp';
     type?: 'primary' | 'secondary' | 'action';
   }
-  interface AnaHeader {}
+  interface AnaHeader {
+    headerBackgroundImg?: string;
+    pageLogoSrc: string;
+    subtitleContent?: string;
+    tabsData?: Tab[];
+    titleContent: string;
+  }
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
     size?: 'large' | 'medium' | 'small' | 'xsmall';
     src: string;
   }
-  interface AnaInput {}
   interface AnaPostActions {
     actions?: any;
     identifier?: string;
@@ -187,7 +191,6 @@ declare namespace LocalJSX {
     'ana-dropdown': AnaDropdown;
     'ana-header': AnaHeader;
     'ana-image': AnaImage;
-    'ana-input': AnaInput;
     'ana-post-actions': AnaPostActions;
     'ana-tabs': AnaTabs;
     'ana-title': AnaTitle;
@@ -203,7 +206,6 @@ declare module '@stencil/core' {
       'ana-dropdown': LocalJSX.AnaDropdown & JSXBase.HTMLAttributes<HTMLAnaDropdownElement>;
       'ana-header': LocalJSX.AnaHeader & JSXBase.HTMLAttributes<HTMLAnaHeaderElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
-      'ana-input': LocalJSX.AnaInput & JSXBase.HTMLAttributes<HTMLAnaInputElement>;
       'ana-post-actions': LocalJSX.AnaPostActions & JSXBase.HTMLAttributes<HTMLAnaPostActionsElement>;
       'ana-tabs': LocalJSX.AnaTabs & JSXBase.HTMLAttributes<HTMLAnaTabsElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
