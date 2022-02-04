@@ -15,6 +15,7 @@ export namespace Components {
     selected?: boolean;
     type: 'primary' | 'secondary' | 'action';
   }
+  interface AnaCard {}
   interface AnaDropdown {
     close: () => Promise<void>;
     elevated: boolean;
@@ -55,6 +56,11 @@ declare global {
     prototype: HTMLAnaButtonElement;
     new (): HTMLAnaButtonElement;
   };
+  interface HTMLAnaCardElement extends Components.AnaCard, HTMLStencilElement {}
+  var HTMLAnaCardElement: {
+    prototype: HTMLAnaCardElement;
+    new (): HTMLAnaCardElement;
+  };
   interface HTMLAnaDropdownElement extends Components.AnaDropdown, HTMLStencilElement {}
   var HTMLAnaDropdownElement: {
     prototype: HTMLAnaDropdownElement;
@@ -87,6 +93,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'ana-button': HTMLAnaButtonElement;
+    'ana-card': HTMLAnaCardElement;
     'ana-dropdown': HTMLAnaDropdownElement;
     'ana-filters': HTMLAnaFiltersElement;
     'ana-image': HTMLAnaImageElement;
@@ -104,6 +111,7 @@ declare namespace LocalJSX {
     selected?: boolean;
     type?: 'primary' | 'secondary' | 'action';
   }
+  interface AnaCard {}
   interface AnaDropdown {
     elevated?: boolean;
     shape?: 'round' | 'smooth' | 'sharp';
@@ -140,6 +148,7 @@ declare namespace LocalJSX {
   }
   interface IntrinsicElements {
     'ana-button': AnaButton;
+    'ana-card': AnaCard;
     'ana-dropdown': AnaDropdown;
     'ana-filters': AnaFilters;
     'ana-image': AnaImage;
@@ -153,6 +162,7 @@ declare module '@stencil/core' {
   export namespace JSX {
     interface IntrinsicElements {
       'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
+      'ana-card': LocalJSX.AnaCard & JSXBase.HTMLAttributes<HTMLAnaCardElement>;
       'ana-dropdown': LocalJSX.AnaDropdown & JSXBase.HTMLAttributes<HTMLAnaDropdownElement>;
       'ana-filters': LocalJSX.AnaFilters & JSXBase.HTMLAttributes<HTMLAnaFiltersElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
