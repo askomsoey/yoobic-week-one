@@ -32,6 +32,11 @@ export namespace Components {
     size?: 'large' | 'medium' | 'small' | 'xsmall';
     src: string;
   }
+  interface AnaPostActions {
+    actions: any;
+    identifier?: string;
+    moreActions?: any;
+  }
   interface AnaTitle {
     color?: string;
     content: string;
@@ -69,6 +74,11 @@ declare global {
     prototype: HTMLAnaImageElement;
     new (): HTMLAnaImageElement;
   };
+  interface HTMLAnaPostActionsElement extends Components.AnaPostActions, HTMLStencilElement {}
+  var HTMLAnaPostActionsElement: {
+    prototype: HTMLAnaPostActionsElement;
+    new (): HTMLAnaPostActionsElement;
+  };
   interface HTMLAnaTitleElement extends Components.AnaTitle, HTMLStencilElement {}
   var HTMLAnaTitleElement: {
     prototype: HTMLAnaTitleElement;
@@ -89,6 +99,7 @@ declare global {
     'ana-dropdown': HTMLAnaDropdownElement;
     'ana-filters': HTMLAnaFiltersElement;
     'ana-image': HTMLAnaImageElement;
+    'ana-post-actions': HTMLAnaPostActionsElement;
     'ana-title': HTMLAnaTitleElement;
     'ana-votes': HTMLAnaVotesElement;
     'my-component': HTMLMyComponentElement;
@@ -118,6 +129,12 @@ declare namespace LocalJSX {
     size?: 'large' | 'medium' | 'small' | 'xsmall';
     src: string;
   }
+  interface AnaPostActions {
+    actions?: any;
+    identifier?: string;
+    moreActions?: any;
+    onActionClicked?: (event: CustomEvent<Identifier>) => void;
+  }
   interface AnaTitle {
     color?: string;
     content: string;
@@ -140,6 +157,7 @@ declare namespace LocalJSX {
     'ana-dropdown': AnaDropdown;
     'ana-filters': AnaFilters;
     'ana-image': AnaImage;
+    'ana-post-actions': AnaPostActions;
     'ana-title': AnaTitle;
     'ana-votes': AnaVotes;
     'my-component': MyComponent;
@@ -153,6 +171,7 @@ declare module '@stencil/core' {
       'ana-dropdown': LocalJSX.AnaDropdown & JSXBase.HTMLAttributes<HTMLAnaDropdownElement>;
       'ana-filters': LocalJSX.AnaFilters & JSXBase.HTMLAttributes<HTMLAnaFiltersElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
+      'ana-post-actions': LocalJSX.AnaPostActions & JSXBase.HTMLAttributes<HTMLAnaPostActionsElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'ana-votes': LocalJSX.AnaVotes & JSXBase.HTMLAttributes<HTMLAnaVotesElement>;
       'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
