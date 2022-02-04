@@ -41,6 +41,17 @@ button {
     }
   }
 
+  &.tab {
+    background-color: transparent;
+    &.selected {
+      color: #fff;
+      text-decoration: underline;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   i {
     margin-right: 5px;
   }

@@ -13,7 +13,7 @@ export namespace Components {
     icon?: string;
     identifier?: Identifier;
     selected?: boolean;
-    type: 'primary' | 'secondary' | 'action';
+    type: 'primary' | 'secondary' | 'action' | 'tab';
   }
   interface AnaDropdown {
     close: () => Promise<void>;
@@ -23,14 +23,15 @@ export namespace Components {
     toggle: () => Promise<void>;
     type: 'primary' | 'secondary' | 'action';
   }
-  interface AnaFilters {
-    filters: any;
-  }
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
     size?: 'large' | 'medium' | 'small' | 'xsmall';
     src: string;
+  }
+  interface AnaTabs {
+    buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
+    tabs: any;
   }
   interface AnaTitle {
     color?: string;
@@ -55,15 +56,15 @@ declare global {
     prototype: HTMLAnaDropdownElement;
     new (): HTMLAnaDropdownElement;
   };
-  interface HTMLAnaFiltersElement extends Components.AnaFilters, HTMLStencilElement {}
-  var HTMLAnaFiltersElement: {
-    prototype: HTMLAnaFiltersElement;
-    new (): HTMLAnaFiltersElement;
-  };
   interface HTMLAnaImageElement extends Components.AnaImage, HTMLStencilElement {}
   var HTMLAnaImageElement: {
     prototype: HTMLAnaImageElement;
     new (): HTMLAnaImageElement;
+  };
+  interface HTMLAnaTabsElement extends Components.AnaTabs, HTMLStencilElement {}
+  var HTMLAnaTabsElement: {
+    prototype: HTMLAnaTabsElement;
+    new (): HTMLAnaTabsElement;
   };
   interface HTMLAnaTitleElement extends Components.AnaTitle, HTMLStencilElement {}
   var HTMLAnaTitleElement: {
@@ -78,8 +79,8 @@ declare global {
   interface HTMLElementTagNameMap {
     'ana-button': HTMLAnaButtonElement;
     'ana-dropdown': HTMLAnaDropdownElement;
-    'ana-filters': HTMLAnaFiltersElement;
     'ana-image': HTMLAnaImageElement;
+    'ana-tabs': HTMLAnaTabsElement;
     'ana-title': HTMLAnaTitleElement;
     'ana-votes': HTMLAnaVotesElement;
   }
@@ -91,22 +92,23 @@ declare namespace LocalJSX {
     identifier?: Identifier;
     onButtonClicked?: (event: CustomEvent<Identifier>) => void;
     selected?: boolean;
-    type?: 'primary' | 'secondary' | 'action';
+    type?: 'primary' | 'secondary' | 'action' | 'tab';
   }
   interface AnaDropdown {
     elevated?: boolean;
     shape?: 'round' | 'smooth' | 'sharp';
     type?: 'primary' | 'secondary' | 'action';
   }
-  interface AnaFilters {
-    filters?: any;
-    onFilterChange?: (event: CustomEvent<string>) => void;
-  }
   interface AnaImage {
     alt: string;
     shape?: 'round' | 'smooth' | 'sharp';
     size?: 'large' | 'medium' | 'small' | 'xsmall';
     src: string;
+  }
+  interface AnaTabs {
+    buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
+    onTabChange?: (event: CustomEvent<string>) => void;
+    tabs?: any;
   }
   interface AnaTitle {
     color?: string;
@@ -124,8 +126,8 @@ declare namespace LocalJSX {
   interface IntrinsicElements {
     'ana-button': AnaButton;
     'ana-dropdown': AnaDropdown;
-    'ana-filters': AnaFilters;
     'ana-image': AnaImage;
+    'ana-tabs': AnaTabs;
     'ana-title': AnaTitle;
     'ana-votes': AnaVotes;
   }
@@ -136,8 +138,8 @@ declare module '@stencil/core' {
     interface IntrinsicElements {
       'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
       'ana-dropdown': LocalJSX.AnaDropdown & JSXBase.HTMLAttributes<HTMLAnaDropdownElement>;
-      'ana-filters': LocalJSX.AnaFilters & JSXBase.HTMLAttributes<HTMLAnaFiltersElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
+      'ana-tabs': LocalJSX.AnaTabs & JSXBase.HTMLAttributes<HTMLAnaTabsElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'ana-votes': LocalJSX.AnaVotes & JSXBase.HTMLAttributes<HTMLAnaVotesElement>;
     }

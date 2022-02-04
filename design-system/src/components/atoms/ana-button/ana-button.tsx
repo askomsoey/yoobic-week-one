@@ -10,7 +10,7 @@ import { Identifier } from '../../shared/identifier';
 })
 export class AnaButton implements ComponentInterface {
   @Prop() identifier?: Identifier = 'button';
-  @Prop() type: 'primary' | 'secondary' | 'action' = 'primary';
+  @Prop() type: 'primary' | 'secondary' | 'action' | 'tab' = 'primary';
   @Prop() selected? = false;
   @Prop() content?: string;
   @Prop() icon?: string;
