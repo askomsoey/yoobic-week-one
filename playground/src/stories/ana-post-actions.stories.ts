@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A Post Actions",
+  title: "A'n'A/Molecules/Post Actions",
 } as Meta;
 
 const Template: Story<Components.AnaPostActions> = ({ actions, moreActions }) => {
