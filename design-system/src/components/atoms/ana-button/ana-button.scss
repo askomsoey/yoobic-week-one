@@ -5,6 +5,7 @@ button {
   color: #d7dadc;
   font-weight: bold;
   font-size: 14px;
+  background-color: transparent;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -18,7 +19,6 @@ button {
   }
   &.secondary {
     color: #7f8283;
-    background-color: #1a1a1b;
     &:hover {
       background-color: #29292a;
     }
@@ -26,7 +26,6 @@ button {
   &.action {
     color: #808384;
     font-size: 12px;
-    background-color: #1a1a1b;
     border-radius: 2px;
     &:hover {
       background-color: #29292a;

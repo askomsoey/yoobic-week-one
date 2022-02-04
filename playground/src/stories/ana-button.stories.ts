@@ -56,3 +56,9 @@ export const DefaultLongText: Story<Components.AnaButton> = Template.bind({});
 DefaultLongText.args = {
   content: 'Create a new post',
 };
+
+export const Transparent: Story<Components.AnaButton> = Template.bind({});
+Transparent.args = {
+  type: 'tab',
+  selected: false,
+};
