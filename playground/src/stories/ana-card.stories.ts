@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A/Organism/Card",
+  title: "A'n'A/Organisms/Card",
   argTypes: {
     type: {
       options: ['post', 'filters', 'create'],
