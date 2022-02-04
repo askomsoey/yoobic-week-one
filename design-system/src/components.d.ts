@@ -36,6 +36,8 @@ export namespace Components {
   }
   interface AnaTabs {
     buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
+    getSelected: () => Promise<string>;
+    identifier?: Identifier;
     tabs: any;
   }
   interface AnaTitle {
@@ -124,7 +126,8 @@ declare namespace LocalJSX {
   }
   interface AnaTabs {
     buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
-    onTabChange?: (event: CustomEvent<string>) => void;
+    identifier?: Identifier;
+    onTabChange?: (event: CustomEvent<{ tabsId: Identifier; tabId: Identifier }>) => void;
     tabs?: any;
   }
   interface AnaTitle {

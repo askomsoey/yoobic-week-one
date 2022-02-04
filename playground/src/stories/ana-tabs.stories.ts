@@ -45,13 +45,13 @@ WithIcons.args = {
     {
       id: 'hot',
       title: 'Hot',
-      selected: true,
+      selected: false,
       icon: 'fire',
     },
     {
       id: 'new',
       title: 'New',
-      selected: false,
+      selected: true,
       icon: 'certificate',
     },
     {
@@ -70,7 +70,7 @@ TransparentStyle.args = {
     {
       id: 'posts',
       title: 'Posts',
-      selected: true,
+      selected: false,
     },
     {
       id: 'wiki',
@@ -80,7 +80,7 @@ TransparentStyle.args = {
     {
       id: 'rules',
       title: 'Rules',
-      selected: false,
+      selected: true,
     },
   ],
 };
