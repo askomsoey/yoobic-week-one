@@ -6,7 +6,7 @@ export default {
   title: "A'n'A/Atoms/Title",
   argTypes: {
     size: {
-      options: ['large', 'medium', 'small'],
+      options: ['large', 'medium', 'small', 'xsmall'],
       control: { type: 'inline-radio' },
     },
     content: {
