@@ -1,6 +1,6 @@
 .card {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   width: 100%;
   color: #d7dadc;
@@ -10,7 +10,7 @@
 
   > .left,
   > .right {
-    width: 40px;
+    width: 50px;
   }
 
   .main-content {
@@ -22,5 +22,9 @@
       border-color: #808384;
       cursor: pointer;
     }
+  }
+
+  &.filters {
+    padding: 10px;
   }
 }

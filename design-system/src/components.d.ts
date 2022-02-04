@@ -22,6 +22,7 @@ export namespace Components {
   interface AnaCard {
     cardStyle?: CardStyle;
     post?: Post;
+    tabs?: Tab[];
     type?: CardType;
   }
   interface AnaDropdown {
@@ -53,7 +54,7 @@ export namespace Components {
     color?: string;
     content: string;
     elevated: boolean;
-    size?: 'large' | 'medium' | 'small';
+    size?: 'large' | 'medium' | 'small' | 'xsmall';
     subtitle?: string;
   }
   interface AnaVotes {
@@ -126,6 +127,7 @@ declare namespace LocalJSX {
   interface AnaCard {
     cardStyle?: CardStyle;
     post?: Post;
+    tabs?: Tab[];
     type?: CardType;
   }
   interface AnaDropdown {
@@ -155,7 +157,7 @@ declare namespace LocalJSX {
     color?: string;
     content: string;
     elevated?: boolean;
-    size?: 'large' | 'medium' | 'small';
+    size?: 'large' | 'medium' | 'small' | 'xsmall';
     subtitle?: string;
   }
   interface AnaVotes {

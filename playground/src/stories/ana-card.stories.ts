@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A/Atoms/Card",
+  title: "A'n'A/Organism/Card",
   argTypes: {
     type: {
       options: ['post', 'filters', 'create'],
@@ -12,12 +12,12 @@ export default {
   },
 } as Meta;
 
-const Template: Story<Components.AnaCard> = ({ type, post }) => {
-  return html` <ana-card type=${type} .post=${post}></ana-card> `;
+const Template: Story<Components.AnaCard> = ({ type, post, tabs }) => {
+  return html` <ana-card type=${type} .post=${post} .tabs=${tabs}></ana-card> `;
 };
 
-export const Default: Story<Components.AnaCard> = Template.bind({});
-Default.args = {
+export const PostCard: Story<Components.AnaCard> = Template.bind({});
+PostCard.args = {
   type: 'post',
   post: {
     votes: 97,
@@ -27,4 +27,29 @@ Default.args = {
     author: 'naytars',
     date: new Date(),
   },
+};
+
+export const Filters: Story<Components.AnaCard> = Template.bind({});
+Filters.args = {
+  type: 'filters',
+  tabs: [
+    {
+      id: 'hot',
+      title: 'Hot',
+      selected: false,
+      icon: 'fire',
+    },
+    {
+      id: 'new',
+      title: 'New',
+      selected: true,
+      icon: 'certificate',
+    },
+    {
+      id: 'top',
+      title: 'Top',
+      selected: false,
+      icon: 'upload',
+    },
+  ],
 };
