@@ -3,6 +3,7 @@ import { Component, ComponentInterface, h, Host, Listen, Prop } from '@stencil/c
 import { CardStyle } from '../../shared/card-style';
 import { CardType } from '../../shared/card-type';
 import { Post } from '../../shared/post';
+import { Tab } from '../../shared/tab';
 
 @Component({
   tag: 'ana-card',
@@ -13,6 +14,7 @@ export class AnaCard implements ComponentInterface {
   @Prop() type?: CardType = CardType.POST;
   @Prop() cardStyle?: CardStyle = CardStyle.CARD;
   @Prop() post?: Post;
+  @Prop() tabs?: Tab[];
 
   @Listen('votesIncremented')
   votesIncremented() {
@@ -74,6 +76,31 @@ export class AnaCard implements ComponentInterface {
     }
   }
 
+  formatDate() {
+    const seconds = Math.floor((new Date().getTime() - this.post.date.getTime()) / 1000);
+    let interval = seconds / 31536000;
+    if (interval > 1) {
+      return Math.floor(interval) + ' years';
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + ' months';
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + ' days';
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + ' hours';
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + ' minutes';
+    }
+    return Math.floor(seconds) + ' seconds';
+  }
+
   render() {
     if (this.type === CardType.POST) {
       return (
@@ -84,9 +111,10 @@ export class AnaCard implements ComponentInterface {
             </div>
             <div class="main-content">
               <div class="top">
-                <ana-title content={this.post.title} color="#d7dadc"></ana-title>
+                <ana-title content={`Posted by u/${this.post.author} ${this.formatDate()} ago`} color="#6e6f70" size="xsmall"></ana-title>
               </div>
               <div class="main">
+                <ana-title content={this.post.title} color="#d7dadc"></ana-title>
                 <p>{this.post.content}</p>
               </div>
               <div class="bottom">
@@ -94,6 +122,14 @@ export class AnaCard implements ComponentInterface {
               </div>
             </div>
             <div class="right"></div>
+          </div>
+        </Host>
+      );
+    } else if (this.type === CardType.FILTERS) {
+      return (
+        <Host>
+          <div class="card filters">
+            <ana-tabs buttonType="secondary" tabs={this.tabs}></ana-tabs>
           </div>
         </Host>
       );
