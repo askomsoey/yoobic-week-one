@@ -6,7 +6,7 @@ export default {
   title: "A'n'A/Atoms/Button",
   argTypes: {
     type: {
-      options: ['primary', 'secondary', 'action'],
+      options: ['primary', 'secondary', 'action', 'tab'],
       control: { type: 'inline-radio' },
     },
     content: {

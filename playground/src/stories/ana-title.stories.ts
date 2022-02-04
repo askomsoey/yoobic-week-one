@@ -12,6 +12,9 @@ export default {
     content: {
       control: { type: 'text' },
     },
+    subtitle: {
+      control: { type: 'text' },
+    },
     color: {
       control: { type: 'color' },
     },
@@ -21,13 +24,19 @@ export default {
   },
 } as Meta;
 
-const Template: Story<Components.AnaTitle> = ({ content = 'Test Title', size = 'medium', color = '#000', elevated = false }) => {
-  return html`<ana-title content=${content} size=${size} color=${color} elevated="${elevated}"></ana-title>`;
+const Template: Story<Components.AnaTitle> = ({ content = 'Test Title', subtitle = undefined, size = 'medium', color = '#000', elevated = false }) => {
+  return html`<ana-title content=${content} size=${size} subtitle=${subtitle} color=${color} elevated="${elevated}"></ana-title>`;
 };
 
 export const Default: Story<Components.AnaTitle> = Template.bind({});
 Default.args = {
   size: 'medium',
+};
+
+export const WithSubtitle: Story<Components.AnaTitle> = Template.bind({});
+WithSubtitle.args = {
+  subtitle: 'Test Subtitle',
+  color: '#fff',
 };
 
 export const LongText: Story<Components.AnaTitle> = Template.bind({});
