@@ -9,7 +9,7 @@ import * as reactImg from '../assets/ana-image/react.png';
 import * as thumbsUpImg from '../assets/ana-image/thumbs_up.png';
 
 export default {
-  title: "A'n'A Image",
+  title: "A'n'A/Atoms/Image",
   argTypes: {
     useExternal: {
       type: 'boolean',
