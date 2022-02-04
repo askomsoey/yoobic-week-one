@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import { Identifier } from './components/shared/identifier';
+import { Tab } from './components/shared/tab';
 import { Variant } from './components/molecules/ana-votes/ana-votes';
 export namespace Components {
   interface AnaButton {
@@ -38,7 +39,7 @@ export namespace Components {
     buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
     getSelected: () => Promise<string>;
     identifier?: Identifier;
-    tabs: any;
+    tabs: Tab[];
   }
   interface AnaTitle {
     color?: string;
@@ -128,7 +129,7 @@ declare namespace LocalJSX {
     buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
     identifier?: Identifier;
     onTabChange?: (event: CustomEvent<{ tabsId: Identifier; tabId: Identifier }>) => void;
-    tabs?: any;
+    tabs?: Tab[];
   }
   interface AnaTitle {
     color?: string;

@@ -11,7 +11,7 @@ import { Tab } from '../../shared/tab';
 export class AnaTabs implements ComponentInterface {
   @Prop() identifier?: Identifier = 'tabs';
   @Prop() buttonType?: 'primary' | 'secondary' | 'action' | 'tab' = 'secondary';
-  @Prop() tabs: any = [];
+  @Prop() tabs: Tab[] = [];
   @State() selectedTab: string;
 
   @Event({
