@@ -18,6 +18,8 @@ export class AnaDropdown implements ComponentInterface {
   buttonClickedHandler(event: CustomEvent<Identifier>) {
     if (event.detail === 'dropdownMenuButton') {
       this.toggle();
+    } else {
+      this.close();
     }
   }
 
