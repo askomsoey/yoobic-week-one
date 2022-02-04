@@ -41,18 +41,35 @@ export class AnaVotes implements ComponentInterface {
     let source;
     switch (variant) {
       case 'arrows':
-        source = usage === 'increment' ? 'https://img.icons8.com/ios/32/FFFFFF/sort-up.png' : 'https://img.icons8.com/ios/32/FFFFFF/sort-down.png';
+        source = usage === 'increment' ? 'https://img.icons8.com/ios/32/d4d4d4/sort-up.png' : 'https://img.icons8.com/ios/32/d4d4d4/sort-down.png';
         break;
       case 'math':
-        source = usage === 'increment' ? 'https://img.icons8.com/ios/32/FFFFFF/plus-math.png' : 'https://img.icons8.com/ios/32/FFFFFF/minus-math.png';
+        source = usage === 'increment' ? 'https://img.icons8.com/ios/32/d4d4d4/plus-math.png' : 'https://img.icons8.com/ios/32/d4d4d4/minus-math.png';
         break;
       case 'thumbs':
-        source = usage === 'increment' ? 'https://img.icons8.com/material-outlined/32/FFFFFF/thumb-up.png' : 'https://img.icons8.com/material-outlined/32/FFFFFF/thumbs-down.png';
+        source = usage === 'increment' ? 'https://img.icons8.com/material-outlined/32/d4d4d4/thumb-up.png' : 'https://img.icons8.com/material-outlined/32/d4d4d4/thumbs-down.png';
         break;
       default:
         return;
     }
     return <img src={source} alt={`${usage} votes button`} />;
+  }
+
+  getFormattedNumber() {
+    let result = '';
+    let total = this.totalVotes;
+
+    if (total >= 1000000) {
+      total = total / 1000000;
+      result += total.toFixed(1) + 'M';
+    } else if (total >= 1000) {
+      total = total / 1000;
+      result += total.toFixed(1) + 'K';
+    } else {
+      result += total;
+    }
+
+    return result;
   }
 
   render() {
@@ -61,7 +78,7 @@ export class AnaVotes implements ComponentInterface {
         <ana-button identifier="incrementButton" type="secondary">
           {this.getVoteIcon('increment', this.variant)}
         </ana-button>
-        <p class="total">{this.totalVotes}</p>
+        <p class="total">{this.getFormattedNumber()}</p>
         <ana-button identifier="decrementButton" type="secondary">
           {this.getVoteIcon('decrement', this.variant)}
         </ana-button>

@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A Filters",
+  title: "A'n'A/Molecules/Filters",
 } as Meta;
 
 const Template: Story<Components.AnaFilters> = ({ filters }) => {

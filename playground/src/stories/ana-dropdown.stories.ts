@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A Dropdown",
+  title: "A'n'A/Atoms/Dropdown",
   argTypes: {
     type: {
       options: ['primary', 'secondary', 'action'],

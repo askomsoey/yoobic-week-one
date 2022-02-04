@@ -43,10 +43,6 @@ export namespace Components {
     totalVotes: number;
     variant?: Variant;
   }
-  interface MyComponent {
-    first?: string;
-    last?: string;
-  }
 }
 declare global {
   interface HTMLAnaButtonElement extends Components.AnaButton, HTMLStencilElement {}
@@ -79,11 +75,6 @@ declare global {
     prototype: HTMLAnaVotesElement;
     new (): HTMLAnaVotesElement;
   };
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
-  };
   interface HTMLElementTagNameMap {
     'ana-button': HTMLAnaButtonElement;
     'ana-dropdown': HTMLAnaDropdownElement;
@@ -91,7 +82,6 @@ declare global {
     'ana-image': HTMLAnaImageElement;
     'ana-title': HTMLAnaTitleElement;
     'ana-votes': HTMLAnaVotesElement;
-    'my-component': HTMLMyComponentElement;
   }
 }
 declare namespace LocalJSX {
@@ -131,10 +121,6 @@ declare namespace LocalJSX {
     totalVotes: number;
     variant?: Variant;
   }
-  interface MyComponent {
-    first?: string;
-    last?: string;
-  }
   interface IntrinsicElements {
     'ana-button': AnaButton;
     'ana-dropdown': AnaDropdown;
@@ -142,7 +128,6 @@ declare namespace LocalJSX {
     'ana-image': AnaImage;
     'ana-title': AnaTitle;
     'ana-votes': AnaVotes;
-    'my-component': MyComponent;
   }
 }
 export { LocalJSX as JSX };
@@ -155,7 +140,6 @@ declare module '@stencil/core' {
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'ana-votes': LocalJSX.AnaVotes & JSXBase.HTMLAttributes<HTMLAnaVotesElement>;
-      'my-component': LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
     }
   }
 }

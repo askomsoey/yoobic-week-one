@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A Votes",
+  title: "A'n'A/Molecules/Votes",
   argTypes: {
     identifier: {
       control: { type: 'text' },
@@ -23,3 +23,13 @@ const Template: Story<Components.AnaVotes> = ({ identifier = 'votes', variant = 
 };
 
 export const Default: Story<Components.AnaVotes> = Template.bind({});
+
+export const LargeNumber: Story<Components.AnaVotes> = Template.bind({});
+LargeNumber.args = {
+  totalVotes: 37238,
+};
+
+export const ExtremelyLargeNumber: Story<Components.AnaVotes> = Template.bind({});
+ExtremelyLargeNumber.args = {
+  totalVotes: 123489000,
+};

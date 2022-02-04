@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A Title",
+  title: "A'n'A/Atoms/Title",
   argTypes: {
     size: {
       options: ['large', 'medium', 'small'],

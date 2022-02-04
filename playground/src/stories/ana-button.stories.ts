@@ -3,7 +3,7 @@ import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
 export default {
-  title: "A'n'A Button",
+  title: "A'n'A/Atoms/Button",
   argTypes: {
     type: {
       options: ['primary', 'secondary', 'action'],
