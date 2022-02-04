@@ -6,6 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import { Identifier } from './components/shared/identifier';
+import { CardType } from './components/shared/card-type';
+import { CardStyle } from './components/shared/card-style';
+import { Post } from './components/shared/post';
 import { Tab } from './components/shared/tab';
 import { Variant } from './components/molecules/ana-votes/ana-votes';
 export namespace Components {
@@ -16,7 +19,11 @@ export namespace Components {
     selected?: boolean;
     type: 'primary' | 'secondary' | 'action' | 'tab';
   }
-  interface AnaCard {}
+  interface AnaCard {
+    cardStyle?: CardStyle;
+    post?: Post;
+    type?: CardType;
+  }
   interface AnaDropdown {
     close: () => Promise<void>;
     elevated: boolean;
@@ -116,7 +123,11 @@ declare namespace LocalJSX {
     selected?: boolean;
     type?: 'primary' | 'secondary' | 'action' | 'tab';
   }
-  interface AnaCard {}
+  interface AnaCard {
+    cardStyle?: CardStyle;
+    post?: Post;
+    type?: CardType;
+  }
   interface AnaDropdown {
     elevated?: boolean;
     shape?: 'round' | 'smooth' | 'sharp';
