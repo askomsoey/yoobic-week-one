@@ -14,7 +14,7 @@ export class AnaVotes implements ComponentInterface {
   @Prop() variant?: Variant = 'arrows';
   @Prop({ mutable: true }) totalVotes!: number;
 
-  @State() voted: boolean;
+  @State() vote = 0;
 
   @Event({
     eventName: 'votesIncremented',
@@ -32,16 +32,14 @@ export class AnaVotes implements ComponentInterface {
 
   @Listen('buttonClicked')
   buttonClickedHandler(event: CustomEvent<Identifier>) {
-    if (!this.voted) {
-      if (event.detail === 'incrementButton') {
-        this.votesIncremented.emit(this.identifier);
-        this.totalVotes += 1;
-        this.voted = true;
-      } else if (event.detail === 'decrementButton') {
-        this.votesDecremented.emit(this.identifier);
-        this.totalVotes -= 1;
-        this.voted = true;
-      }
+    if (event.detail === 'incrementButton' && this.vote !== 1) {
+      this.votesIncremented.emit(this.identifier);
+      this.totalVotes += 1 - this.vote;
+      this.vote = 1;
+    } else if (event.detail === 'decrementButton' && this.vote !== -1) {
+      this.votesDecremented.emit(this.identifier);
+      this.totalVotes -= 1 + this.vote;
+      this.vote = -1;
     }
   }
 
