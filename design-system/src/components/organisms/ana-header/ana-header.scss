@@ -11,31 +11,41 @@
   .control-panel {
     display: grid;
     grid-template-areas:
-      '. logo title button .'
-      '. tabs tabs . .';
-    grid-template-columns: 2fr 1.5fr 6fr 1fr 2fr;
+      '. info info info info info info .'
+      '. tabs tabs tabs tabs tabs tabs .';
+    grid-template-columns:
+      calc(50vw - 400px)
+      repeat(6, 1fr)
+      calc(50vw - 400px);
     background-color: rgb(36, 36, 36);
-
-    ana-image {
-      grid-area: logo;
-      justify-self: right;
-      margin-top: -25px;
-    }
-
-    ana-title {
-      grid-area: title;
-    }
-
-    ana-button {
-      grid-area: button;
-      margin-top: 10px;
-    }
 
     ana-tabs {
       grid-area: tabs;
 
       ana-button {
         margin: 0;
+      }
+    }
+
+    .info-container {
+      display: grid;
+      grid-area: info;
+      grid-template-areas: 'logo title title title . button';
+      grid-template-columns: 0.6fr repeat(5, 1fr);
+
+      ana-image {
+        grid-area: logo;
+        justify-self: right;
+        margin-top: -25px;
+      }
+
+      ana-title {
+        grid-area: title;
+      }
+
+      ana-button {
+        grid-area: button;
+        margin-top: 10px;
       }
     }
   }
