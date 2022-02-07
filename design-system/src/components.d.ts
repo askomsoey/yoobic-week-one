@@ -33,6 +33,10 @@ export namespace Components {
     toggle: () => Promise<void>;
     type: 'primary' | 'secondary' | 'action';
   }
+  interface AnaFeed {
+    filters: Tab[];
+    posts?: Post[];
+  }
   interface AnaHeader {
     backgroundImg?: string;
     logoSrc: string;
@@ -86,6 +90,11 @@ declare global {
     prototype: HTMLAnaDropdownElement;
     new (): HTMLAnaDropdownElement;
   };
+  interface HTMLAnaFeedElement extends Components.AnaFeed, HTMLStencilElement {}
+  var HTMLAnaFeedElement: {
+    prototype: HTMLAnaFeedElement;
+    new (): HTMLAnaFeedElement;
+  };
   interface HTMLAnaHeaderElement extends Components.AnaHeader, HTMLStencilElement {}
   var HTMLAnaHeaderElement: {
     prototype: HTMLAnaHeaderElement;
@@ -120,6 +129,7 @@ declare global {
     'ana-button': HTMLAnaButtonElement;
     'ana-card': HTMLAnaCardElement;
     'ana-dropdown': HTMLAnaDropdownElement;
+    'ana-feed': HTMLAnaFeedElement;
     'ana-header': HTMLAnaHeaderElement;
     'ana-image': HTMLAnaImageElement;
     'ana-post-actions': HTMLAnaPostActionsElement;
@@ -147,6 +157,10 @@ declare namespace LocalJSX {
     elevated?: boolean;
     shape?: 'round' | 'smooth' | 'sharp';
     type?: 'primary' | 'secondary' | 'action';
+  }
+  interface AnaFeed {
+    filters: Tab[];
+    posts?: Post[];
   }
   interface AnaHeader {
     backgroundImg?: string;
@@ -191,6 +205,7 @@ declare namespace LocalJSX {
     'ana-button': AnaButton;
     'ana-card': AnaCard;
     'ana-dropdown': AnaDropdown;
+    'ana-feed': AnaFeed;
     'ana-header': AnaHeader;
     'ana-image': AnaImage;
     'ana-post-actions': AnaPostActions;
@@ -206,6 +221,7 @@ declare module '@stencil/core' {
       'ana-button': LocalJSX.AnaButton & JSXBase.HTMLAttributes<HTMLAnaButtonElement>;
       'ana-card': LocalJSX.AnaCard & JSXBase.HTMLAttributes<HTMLAnaCardElement>;
       'ana-dropdown': LocalJSX.AnaDropdown & JSXBase.HTMLAttributes<HTMLAnaDropdownElement>;
+      'ana-feed': LocalJSX.AnaFeed & JSXBase.HTMLAttributes<HTMLAnaFeedElement>;
       'ana-header': LocalJSX.AnaHeader & JSXBase.HTMLAttributes<HTMLAnaHeaderElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-post-actions': LocalJSX.AnaPostActions & JSXBase.HTMLAttributes<HTMLAnaPostActionsElement>;
