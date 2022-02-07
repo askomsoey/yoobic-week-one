@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, h, Host, Listen, Prop, State } from '@stencil/core';
+import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, Prop, State } from '@stencil/core';
 
 import { CardStyle } from '../../shared/card-style';
 import { CardType } from '../../shared/card-type';
@@ -15,8 +15,6 @@ export class AnaCard implements ComponentInterface {
   @Prop() cardStyle?: CardStyle = CardStyle.CARD;
   @Prop() post?: Post;
   @Prop() tabs?: Tab[];
-
-  @State() selectedCardStyle: CardStyle;
 
   actions = [
     {
@@ -51,9 +49,24 @@ export class AnaCard implements ComponentInterface {
     },
   ];
 
+  @Event({
+    eventName: 'cardStyleChange',
+    bubbles: true,
+    composed: true,
+  })
+  cardStyleChange: EventEmitter<CardStyle>;
+
+  @Event({
+    eventName: 'postVote',
+    bubbles: true,
+    composed: true,
+  })
+  postVote: EventEmitter<{ post: Post; score: number }>;
+
   componentWillRender() {
-    this.selectedCardStyle = this.cardStyle || CardStyle.CARD;
-    this.actions.find((a) => a.id === 'comment').label = `${this.post.comments} Comments`;
+    if (this.post) {
+      this.actions.find((a) => a.id === 'comment').label = `${this.post.comments} Comments`;
+    }
   }
 
   @Listen('votesIncremented')
@@ -69,16 +82,16 @@ export class AnaCard implements ComponentInterface {
   @Listen('buttonClicked')
   selectCardStyle(event: CustomEvent<CardStyle>) {
     if (Object.values(CardStyle).includes(event.detail)) {
-      this.selectedCardStyle = event.detail;
+      this.cardStyleChange.emit(event.detail);
     }
   }
 
   addPostVote(score: number) {
-    this.post.votes += score;
+    this.postVote.emit({ post: this.post, score: score });
   }
 
   getActionButtons() {
-    switch (this.cardStyle) {
+    switch (this.cardStyle as CardStyle) {
       case CardStyle.CARD:
         return this.actions.slice(0, 4);
       case CardStyle.CLASSIC:
@@ -89,7 +102,7 @@ export class AnaCard implements ComponentInterface {
   }
 
   getMoreActionButtons() {
-    switch (this.cardStyle) {
+    switch (this.cardStyle as CardStyle) {
       case CardStyle.CARD:
         return this.actions.slice(4, 6);
       case CardStyle.CLASSIC:
@@ -125,12 +138,12 @@ export class AnaCard implements ComponentInterface {
   }
 
   renderImage() {
-    if (this.post.image || (!this.post.image && this.selectedCardStyle !== CardStyle.CARD)) {
+    if (this.post.image || (!this.post.image && this.cardStyle !== CardStyle.CARD)) {
       return (
         <ana-image
           alt="post image"
           src={this.post.image || 'https://via.placeholder.com/300x300'}
-          size={this.selectedCardStyle === CardStyle.CARD ? 'large' : this.selectedCardStyle === CardStyle.CLASSIC ? 'medium' : 'small'}
+          size={this.cardStyle === CardStyle.CARD ? 'large' : this.cardStyle === CardStyle.CLASSIC ? 'medium' : 'small'}
           shape="sharp"
         ></ana-image>
       );
