@@ -50,9 +50,11 @@
       }
     }
     &.secondary {
-      background-color: #1a1a1b;
+      background-color: rgb(36, 36, 36);
+      box-shadow: rgb(66, 66, 66) -2px 2px 4px;
+      // border: rgb(66, 66, 66) 1px solid;
       &:hover {
-        background-color: #29292a;
+        background-color: rgb(44, 44, 44);
       }
     }
     &.action {

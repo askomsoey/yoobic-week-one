@@ -55,6 +55,15 @@ export namespace Components {
     identifier?: string;
     moreActions?: any;
   }
+  interface AnaReddit {
+    filters: Tab[];
+    headerImg?: string;
+    headerTabs: Tab[];
+    logoSrc: string;
+    mainTitle: string;
+    posts: Post[];
+    subtitle: string;
+  }
   interface AnaTabs {
     buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
     getSelected: () => Promise<string>;
@@ -110,6 +119,11 @@ declare global {
     prototype: HTMLAnaPostActionsElement;
     new (): HTMLAnaPostActionsElement;
   };
+  interface HTMLAnaRedditElement extends Components.AnaReddit, HTMLStencilElement {}
+  var HTMLAnaRedditElement: {
+    prototype: HTMLAnaRedditElement;
+    new (): HTMLAnaRedditElement;
+  };
   interface HTMLAnaTabsElement extends Components.AnaTabs, HTMLStencilElement {}
   var HTMLAnaTabsElement: {
     prototype: HTMLAnaTabsElement;
@@ -133,6 +147,7 @@ declare global {
     'ana-header': HTMLAnaHeaderElement;
     'ana-image': HTMLAnaImageElement;
     'ana-post-actions': HTMLAnaPostActionsElement;
+    'ana-reddit': HTMLAnaRedditElement;
     'ana-tabs': HTMLAnaTabsElement;
     'ana-title': HTMLAnaTitleElement;
     'ana-votes': HTMLAnaVotesElement;
@@ -181,6 +196,15 @@ declare namespace LocalJSX {
     moreActions?: any;
     onActionClicked?: (event: CustomEvent<Identifier>) => void;
   }
+  interface AnaReddit {
+    filters?: Tab[];
+    headerImg?: string;
+    headerTabs?: Tab[];
+    logoSrc: string;
+    mainTitle?: string;
+    posts?: Post[];
+    subtitle?: string;
+  }
   interface AnaTabs {
     buttonType?: 'primary' | 'secondary' | 'action' | 'tab';
     identifier?: Identifier;
@@ -209,6 +233,7 @@ declare namespace LocalJSX {
     'ana-header': AnaHeader;
     'ana-image': AnaImage;
     'ana-post-actions': AnaPostActions;
+    'ana-reddit': AnaReddit;
     'ana-tabs': AnaTabs;
     'ana-title': AnaTitle;
     'ana-votes': AnaVotes;
@@ -225,6 +250,7 @@ declare module '@stencil/core' {
       'ana-header': LocalJSX.AnaHeader & JSXBase.HTMLAttributes<HTMLAnaHeaderElement>;
       'ana-image': LocalJSX.AnaImage & JSXBase.HTMLAttributes<HTMLAnaImageElement>;
       'ana-post-actions': LocalJSX.AnaPostActions & JSXBase.HTMLAttributes<HTMLAnaPostActionsElement>;
+      'ana-reddit': LocalJSX.AnaReddit & JSXBase.HTMLAttributes<HTMLAnaRedditElement>;
       'ana-tabs': LocalJSX.AnaTabs & JSXBase.HTMLAttributes<HTMLAnaTabsElement>;
       'ana-title': LocalJSX.AnaTitle & JSXBase.HTMLAttributes<HTMLAnaTitleElement>;
       'ana-votes': LocalJSX.AnaVotes & JSXBase.HTMLAttributes<HTMLAnaVotesElement>;

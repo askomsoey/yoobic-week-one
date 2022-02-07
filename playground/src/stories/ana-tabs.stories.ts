@@ -2,6 +2,8 @@ import { Meta, Story } from '@storybook/web-components';
 import { Components } from '@yoobic/design-system';
 import { html } from 'lit-html';
 
+import { TABS } from '../mocks/tabs';
+
 export default {
   title: "A'n'A/Molecules/Tabs",
   argTypes: {
@@ -66,21 +68,5 @@ WithIcons.args = {
 export const TransparentStyle: Story<Components.AnaTabs> = Template.bind({});
 TransparentStyle.args = {
   buttonType: 'tab',
-  tabs: [
-    {
-      id: 'posts',
-      title: 'Posts',
-      selected: false,
-    },
-    {
-      id: 'wiki',
-      title: 'Wiki',
-      selected: false,
-    },
-    {
-      id: 'rules',
-      title: 'Rules',
-      selected: true,
-    },
-  ],
+  tabs: TABS,
 };
