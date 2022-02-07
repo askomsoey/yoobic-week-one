@@ -30,18 +30,16 @@ export class AnaPostActions implements ComponentInterface {
   }
 
   renderMoreActions() {
-    if (this.moreActions.length) {
-      return (
-        <ana-dropdown type="action">
-          <i slot="button" class="fas fa-ellipsis-h"></i>
-          <div slot="menu">
-            {this.moreActions.map((a) => (
-              <ana-button identifier={a.id} type="action" content={a.label} icon={a.icon}></ana-button>
-            ))}
-          </div>
-        </ana-dropdown>
-      );
-    }
+    return (
+      <ana-dropdown type="action">
+        <i slot="button" class="fas fa-ellipsis-h"></i>
+        <div slot="menu">
+          {this.moreActions.map((a) => (
+            <ana-button identifier={a.id} type="action" content={a.label} icon={a.icon}></ana-button>
+          ))}
+        </div>
+      </ana-dropdown>
+    );
   }
 
   render() {

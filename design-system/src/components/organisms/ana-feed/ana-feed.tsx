@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, h, Host, Prop } from '@stencil/core';
+import { Component, ComponentInterface, h, Host, Listen, Prop, State } from '@stencil/core';
 
 import { CardStyle } from '../../shared/card-style';
 import { CardType } from '../../shared/card-type';
@@ -14,8 +14,15 @@ export class AnaFeed implements ComponentInterface {
   @Prop() posts?: Post[] = [];
   @Prop() filters!: Tab[];
 
+  @State() cardStyle: CardStyle;
+
+  @Listen('cardStyleChange')
+  cardStyleChange(event: CustomEvent<CardStyle>) {
+    this.cardStyle = event.detail;
+  }
+
   getPosts() {
-    return this.posts.map((post) => <ana-card type={CardType.POST} post={post} cardStyle={CardStyle.CARD}></ana-card>);
+    return this.posts.map((post) => <ana-card type={CardType.POST} post={post} cardStyle={this.cardStyle}></ana-card>);
   }
 
   render() {

@@ -149,6 +149,8 @@ declare namespace LocalJSX {
   }
   interface AnaCard {
     cardStyle?: CardStyle;
+    onCardStyleChange?: (event: CustomEvent<CardStyle>) => void;
+    onPostVote?: (event: CustomEvent<{ post: Post; score: number }>) => void;
     post?: Post;
     tabs?: Tab[];
     type?: CardType;
