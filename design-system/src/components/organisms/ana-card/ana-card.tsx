@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, h, Host, Listen, Prop } from '@stencil/core';
+import { Component, ComponentInterface, h, Host, Listen, Prop, State } from '@stencil/core';
 
 import { CardStyle } from '../../shared/card-style';
 import { CardType } from '../../shared/card-type';
@@ -16,6 +16,12 @@ export class AnaCard implements ComponentInterface {
   @Prop() post?: Post;
   @Prop() tabs?: Tab[];
 
+  @State() selectedCardStyle: CardStyle;
+
+  connectedCallback() {
+    this.selectedCardStyle = this.cardStyle || CardStyle.CARD;
+  }
+
   @Listen('votesIncremented')
   votesIncremented() {
     this.addPostVote(1);
@@ -26,12 +32,20 @@ export class AnaCard implements ComponentInterface {
     this.addPostVote(-1);
   }
 
+  @Listen('buttonClicked')
+  selectCardStyle(event: CustomEvent<CardStyle>) {
+    if (Object.values(CardStyle).includes(event.detail)) {
+      this.selectedCardStyle = event.detail;
+    }
+  }
+
   addPostVote(score: number) {
     this.post.votes += score;
   }
 
   getActionButtons() {
     switch (this.cardStyle) {
+      default:
       case CardStyle.CARD:
         return [
           {
@@ -60,6 +74,7 @@ export class AnaCard implements ComponentInterface {
 
   getMoreActionButtons() {
     switch (this.cardStyle) {
+      default:
       case CardStyle.CARD:
         return [
           {
@@ -130,6 +145,14 @@ export class AnaCard implements ComponentInterface {
         <Host>
           <div class="card filters">
             <ana-tabs buttonType="secondary" tabs={this.tabs}></ana-tabs>
+            <ana-dropdown type="secondary">
+              <i slot="button" class="fas fa-th-large"></i>
+              <div slot="menu">
+                {Object.values(CardStyle).map((cs) => (
+                  <ana-button identifier={cs} type="action" content={cs[0].toUpperCase() + cs.slice(1)} icon="th-large"></ana-button>
+                ))}
+              </div>
+            </ana-dropdown>
           </div>
         </Host>
       );

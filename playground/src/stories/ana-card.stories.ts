@@ -9,11 +9,15 @@ export default {
       options: ['post', 'filters', 'create'],
       control: { type: 'inline-radio' },
     },
+    cardStyle: {
+      options: ['card', 'classic', 'compact'],
+      control: { type: 'inline-radio' },
+    },
   },
 } as Meta;
 
-const Template: Story<Components.AnaCard> = ({ type, post, tabs }) => {
-  return html` <ana-card type=${type} .post=${post} .tabs=${tabs}></ana-card> `;
+const Template: Story<Components.AnaCard> = ({ type, post, tabs, cardStyle = 'card' }) => {
+  return html` <ana-card type=${type} .post=${post} .tabs=${tabs} card-style=${cardStyle}></ana-card> `;
 };
 
 export const PostCard: Story<Components.AnaCard> = Template.bind({});
