@@ -10,7 +10,7 @@ import { Tab } from '../../shared/tab';
 export class AnaHeader implements ComponentInterface {
   @Prop() backgroundImg?: string;
   @Prop() logoSrc!: string;
-  @Prop() title!: string;
+  @Prop() mainTitle!: string;
   @Prop() subtitle?: string;
   @Prop() tabs: Tab[] = [];
 
@@ -19,9 +19,11 @@ export class AnaHeader implements ComponentInterface {
       <Host>
         <div class="header-img-container">{this.backgroundImg && <img src={this.backgroundImg} alt="header" />}</div>
         <div class="control-panel">
-          <ana-image src={this.logoSrc} alt="header logo" size="medium"></ana-image>
-          <ana-title content={this.title} subtitle={this.subtitle || undefined} size="medium" color="#fff"></ana-title>
-          <ana-button content="Join" identifier="joinButton"></ana-button>
+          <div class="info-container">
+            <ana-image src={this.logoSrc} alt="header logo" size="medium"></ana-image>
+            <ana-title content={this.mainTitle} subtitle={this.subtitle || undefined} size="medium" color="#fff"></ana-title>
+            <ana-button content="Join" identifier="joinButton"></ana-button>
+          </div>
           <ana-tabs tabs={this.tabs} buttonType="tab" identifier="headerTabs"></ana-tabs>
         </div>
       </Host>

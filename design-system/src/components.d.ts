@@ -34,11 +34,11 @@ export namespace Components {
     type: 'primary' | 'secondary' | 'action';
   }
   interface AnaHeader {
-    headerBackgroundImg?: string;
-    pageLogoSrc: string;
-    subtitleContent?: string;
-    tabsData: Tab[];
-    titleContent: string;
+    backgroundImg?: string;
+    logoSrc: string;
+    mainTitle: string;
+    subtitle?: string;
+    tabs: Tab[];
   }
   interface AnaImage {
     alt: string;
@@ -149,11 +149,11 @@ declare namespace LocalJSX {
     type?: 'primary' | 'secondary' | 'action';
   }
   interface AnaHeader {
-    headerBackgroundImg?: string;
-    pageLogoSrc: string;
-    subtitleContent?: string;
-    tabsData?: Tab[];
-    titleContent: string;
+    backgroundImg?: string;
+    logoSrc: string;
+    mainTitle: string;
+    subtitle?: string;
+    tabs?: Tab[];
   }
   interface AnaImage {
     alt: string;

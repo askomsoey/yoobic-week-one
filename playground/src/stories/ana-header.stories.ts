@@ -7,42 +7,34 @@ import * as reactImg from '../assets/ana-image/react.png';
 export default {
   title: "A'n'A/Organisms/Header",
   argTypes: {
-    headerBackgroundImg: {
+    backgroundImg: {
       control: { type: 'text' },
     },
-    pageLogoSrc: {
+    logoSrc: {
       control: { type: 'text' },
     },
-    titleContent: {
+    mainTitle: {
       control: { type: 'text' },
     },
-    subtitleContent: {
+    subtitle: {
       control: { type: 'text' },
     },
   },
 } as Meta;
 
 const Template: Story<Components.AnaHeader> = ({
-  headerBackgroundImg = undefined,
-  pageLogoSrc = reactImg,
-  titleContent = '/r/Test Title Content',
-  subtitleContent = 'r/Test Subtitle Content',
-  tabsData = [],
+  backgroundImg = undefined,
+  logoSrc = reactImg,
+  mainTitle = '/r/Test Title Content',
+  subtitle = 'r/Test Subtitle Content',
+  tabs = [],
 }) => {
-  return html`
-    <ana-header
-      header-background-img=${headerBackgroundImg}
-      page-logo-src=${pageLogoSrc}
-      title-content=${titleContent}
-      subtitle-content=${subtitleContent}
-      .tabsData=${tabsData}
-    ></ana-header>
-  `;
+  return html` <ana-header background-img=${backgroundImg} logo-src=${logoSrc} main-title=${mainTitle} subtitle=${subtitle} .tabs=${tabs}></ana-header> `;
 };
 
 export const Default: Story<Components.AnaHeader> = Template.bind({});
 Default.args = {
-  tabsData: [
+  tabs: [
     {
       id: 'posts',
       title: 'Posts',
