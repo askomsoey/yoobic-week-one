@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, Prop } from '@stencil/core';
+import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, Prop, State } from '@stencil/core';
 
 import { Identifier } from '../../shared/identifier';
 
@@ -12,7 +12,9 @@ export type Variant = 'thumbs' | 'arrows' | 'math';
 export class AnaVotes implements ComponentInterface {
   @Prop() identifier?: string = 'votes';
   @Prop() variant?: Variant = 'arrows';
-  @Prop() totalVotes!: number;
+  @Prop({ mutable: true }) totalVotes!: number;
+
+  @State() vote = 0;
 
   @Event({
     eventName: 'votesIncremented',
@@ -30,10 +32,14 @@ export class AnaVotes implements ComponentInterface {
 
   @Listen('buttonClicked')
   buttonClickedHandler(event: CustomEvent<Identifier>) {
-    if (event.detail === 'incrementButton') {
+    if (event.detail === 'incrementButton' && this.vote !== 1) {
       this.votesIncremented.emit(this.identifier);
-    } else if (event.detail === 'decrementButton') {
+      this.totalVotes += 1 - this.vote;
+      this.vote = 1;
+    } else if (event.detail === 'decrementButton' && this.vote !== -1) {
       this.votesDecremented.emit(this.identifier);
+      this.totalVotes -= 1 + this.vote;
+      this.vote = -1;
     }
   }
 
