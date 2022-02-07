@@ -34,6 +34,7 @@ export namespace Components {
     type: 'primary' | 'secondary' | 'action';
   }
   interface AnaFeed {
+    filters: Tab[];
     posts?: Post[];
   }
   interface AnaHeader {
@@ -158,6 +159,7 @@ declare namespace LocalJSX {
     type?: 'primary' | 'secondary' | 'action';
   }
   interface AnaFeed {
+    filters: Tab[];
     posts?: Post[];
   }
   interface AnaHeader {
