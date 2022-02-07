@@ -18,8 +18,42 @@ export class AnaCard implements ComponentInterface {
 
   @State() selectedCardStyle: CardStyle;
 
-  connectedCallback() {
+  actions = [
+    {
+      id: 'comment',
+      label: 'Comments',
+      icon: 'comment-alt',
+    },
+    {
+      id: 'award',
+      label: 'Award',
+      icon: 'gift',
+    },
+    {
+      id: 'share',
+      label: 'Share',
+      icon: 'share',
+    },
+    {
+      id: 'save',
+      label: 'Save',
+      icon: 'bookmark',
+    },
+    {
+      id: 'hide',
+      label: 'Hide',
+      icon: 'eye-slash',
+    },
+    {
+      id: 'report',
+      label: 'Report',
+      icon: 'flag',
+    },
+  ];
+
+  componentWillRender() {
     this.selectedCardStyle = this.cardStyle || CardStyle.CARD;
+    this.actions.find((a) => a.id === 'comment').label = `${this.post.comments} Comments`;
   }
 
   @Listen('votesIncremented')
@@ -45,49 +79,23 @@ export class AnaCard implements ComponentInterface {
 
   getActionButtons() {
     switch (this.cardStyle) {
-      default:
       case CardStyle.CARD:
-        return [
-          {
-            id: 'commment',
-            label: 'Comment',
-            icon: 'comment-alt',
-          },
-          {
-            id: 'award',
-            label: 'Award',
-            icon: 'gift',
-          },
-          {
-            id: 'share',
-            label: 'Share',
-            icon: 'share',
-          },
-          {
-            id: 'save',
-            label: 'Save',
-            icon: 'bookmark',
-          },
-        ];
+        return this.actions.slice(0, 4);
+      case CardStyle.CLASSIC:
+        return this.actions;
+      case CardStyle.COMPACT:
+        return this.actions.slice(0, 1);
     }
   }
 
   getMoreActionButtons() {
     switch (this.cardStyle) {
-      default:
       case CardStyle.CARD:
-        return [
-          {
-            id: 'hide',
-            label: 'Hide',
-            icon: 'eye-slash',
-          },
-          {
-            id: 'report',
-            label: 'Report',
-            icon: 'flag',
-          },
-        ];
+        return this.actions.slice(4, 6);
+      case CardStyle.CLASSIC:
+        return [];
+      case CardStyle.COMPACT:
+        return this.actions.slice(1, 6);
     }
   }
 
@@ -116,6 +124,19 @@ export class AnaCard implements ComponentInterface {
     return Math.floor(seconds) + ' seconds';
   }
 
+  renderImage() {
+    if (this.post.image || (!this.post.image && this.selectedCardStyle !== CardStyle.CARD)) {
+      return (
+        <ana-image
+          alt="post image"
+          src={this.post.image || 'https://via.placeholder.com/300x300'}
+          size={this.selectedCardStyle === CardStyle.CARD ? 'large' : this.selectedCardStyle === CardStyle.CLASSIC ? 'medium' : 'small'}
+          shape="sharp"
+        ></ana-image>
+      );
+    }
+  }
+
   render() {
     if (this.type === CardType.POST) {
       return (
@@ -130,7 +151,10 @@ export class AnaCard implements ComponentInterface {
               </div>
               <div class="main">
                 <ana-title content={this.post.title} color="#d7dadc"></ana-title>
-                <p>{this.post.content}</p>
+                <div class="content">
+                  {this.renderImage()}
+                  <p class="text-content">{this.post.content}</p>
+                </div>
               </div>
               <div class="bottom">
                 <ana-post-actions actions={this.getActionButtons()} moreActions={this.getMoreActionButtons()}></ana-post-actions>

@@ -49,7 +49,7 @@ export class AnaPostActions implements ComponentInterface {
       <Host>
         <div class="actions-container">
           {this.renderActions()}
-          {this.renderMoreActions()}
+          {this.moreActions.length ? this.renderMoreActions() : ''}
         </div>
       </Host>
     );

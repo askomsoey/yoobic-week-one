@@ -17,6 +17,42 @@
     width: 100%;
   }
 
+  /* CARD STYLES */
+  &.classic,
+  &.compact {
+    .main-content {
+      .main {
+        .content {
+          display: flex;
+          align-items: flex-start;
+          .text-content {
+            margin: 0 0 0 10px;
+          }
+        }
+      }
+    }
+  }
+  &.compact {
+    .main-content {
+      display: flex;
+      flex-flow: row wrap;
+      .main {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        width: 80%;
+        .content {
+          .text-content {
+            display: none;
+          }
+        }
+      }
+      .bottom {
+        width: 20%;
+      }
+    }
+  }
+
   &.hoverable {
     &:hover {
       border-color: #808384;
