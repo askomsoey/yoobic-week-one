@@ -69,10 +69,18 @@ describe('atoms/ana-votes', () => {
 
     it('should increment votes', async () => {
       expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('0');
-      const btn = page.root.shadowRoot.querySelector('ana-button button') as HTMLButtonElement;
+      const btn = page.root.shadowRoot.querySelectorAll('ana-button button')[0] as HTMLButtonElement;
       btn.click();
       await page.waitForChanges();
       expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('1');
+    });
+
+    it('should decrement votes', async () => {
+      expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('0');
+      const btn = page.root.shadowRoot.querySelectorAll('ana-button button')[1] as HTMLButtonElement;
+      btn.click();
+      await page.waitForChanges();
+      expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('-1');
     });
   });
 
