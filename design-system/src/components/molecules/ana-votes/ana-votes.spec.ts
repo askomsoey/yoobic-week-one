@@ -1,5 +1,6 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
 
+import { AnaButton } from '../../atoms/ana-button/ana-button';
 import { AnaVotes } from './ana-votes';
 
 describe('atoms/ana-votes', () => {
@@ -56,26 +57,24 @@ describe('atoms/ana-votes', () => {
     });
   });
 
-  // TODO : fix
-  // Button click doesn't have any effect
-  // describe('Buttons actions', () => {
-  //   let page: SpecPage;
+  describe('Buttons actions', () => {
+    let page: SpecPage;
 
-  //   beforeEach(async () => {
-  //     page = await newSpecPage({
-  //       components: [AnaVotes, AnaButton],
-  //       html: `<ana-votes total-votes="0"></ana-votes>`,
-  //     });
-  //   });
+    beforeEach(async () => {
+      page = await newSpecPage({
+        components: [AnaVotes, AnaButton],
+        html: `<ana-votes total-votes="0"></ana-votes>`,
+      });
+    });
 
-  //   it('should increment votes', async () => {
-  //     expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('0');
-  //     const btn: any = page.root.shadowRoot.querySelector('ana-button button');
-  //     btn.click();
-  //     await page.waitForChanges();
-  //     expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('1');
-  //   });
-  // });
+    it('should increment votes', async () => {
+      expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('0');
+      const btn = page.root.shadowRoot.querySelector('ana-button button') as HTMLButtonElement;
+      btn.click();
+      await page.waitForChanges();
+      expect(page.root.shadowRoot.querySelector('.total').textContent).toBe('1');
+    });
+  });
 
   describe('Votes placeholder', () => {
     let page: SpecPage;
