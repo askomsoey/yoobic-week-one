@@ -8,7 +8,8 @@
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "start": "start-storybook"
+    "start": "start-storybook",
+    "chromatic": "npx chromatic --project-token=d2e8371977de --force-rebuild"
   },
   "devDependencies": {
     "@babel/core": "7.15.5",
@@ -20,6 +21,7 @@
     "@yoobic/eslint-config": "1.0.0",
     "@yoobic/prettier-config": "1.0.0",
     "babel-loader": "8.2.2",
+    "chromatic": "^6.4.3",
     "copy-webpack-plugin": "^6.4.1",
     "eslint": "7.32.0",
     "prettier": "2.4.0"

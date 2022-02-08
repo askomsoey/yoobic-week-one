@@ -70,3 +70,9 @@ TransparentStyle.args = {
   buttonType: 'tab',
   tabs: TABS,
 };
+
+export const PrimaryStyle: Story<Components.AnaTabs> = Template.bind({});
+PrimaryStyle.args = {
+  buttonType: 'primary',
+  tabs: TABS,
+};
