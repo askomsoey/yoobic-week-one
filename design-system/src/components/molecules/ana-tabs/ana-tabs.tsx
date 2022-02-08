@@ -1,4 +1,4 @@
-import { Component, ComponentInterface, Event, EventEmitter, h, Host, Listen, Method, Prop, State } from '@stencil/core';
+import { Component, ComponentInterface, Event, EventEmitter, h, Host, Method, Prop, State } from '@stencil/core';
 
 import { Identifier } from '../../shared/identifier';
 import { Tab } from '../../shared/tab';
@@ -12,7 +12,7 @@ export class AnaTabs implements ComponentInterface {
   @Prop() identifier?: Identifier = 'tabs';
   @Prop() buttonType?: 'primary' | 'secondary' | 'action' | 'tab' = 'secondary';
   @Prop() tabs: Tab[] = [];
-  @State() selectedTab: string;
+  @State() selectedTab = '';
 
   @Event({
     eventName: 'tabChange',
@@ -21,7 +21,6 @@ export class AnaTabs implements ComponentInterface {
   })
   tabChange: EventEmitter<{ tabsId: Identifier; tabId: Identifier }>;
 
-  @Listen('buttonClicked')
   filterChangeHandler(event: CustomEvent<Identifier>) {
     this.selectedTab = event.detail;
     this.tabChange.emit({ tabsId: this.identifier, tabId: event.detail });
@@ -43,7 +42,14 @@ export class AnaTabs implements ComponentInterface {
       <Host>
         <div class="container">
           {this.tabs.map((t) => (
-            <ana-button identifier={t.id} type={this.buttonType} content={t.title} selected={t.id === this.selectedTab} icon={t.icon || undefined}></ana-button>
+            <ana-button
+              onButtonClicked={this.filterChangeHandler.bind(this)}
+              identifier={t.id}
+              type={this.buttonType}
+              content={t.title}
+              selected={t.id === this.selectedTab}
+              icon={t.icon || undefined}
+            ></ana-button>
           ))}
         </div>
       </Host>
